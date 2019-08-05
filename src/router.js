@@ -14,6 +14,21 @@ export default new Router({
       component: Home
     },
     {
+      path: "/list",
+      name: "list",
+      component: () => import("./views/chat/List.vue")
+    },
+    {
+      path: "/s/:id",
+      name: "single",
+      component: () => import("./views/chat/Single.vue")
+    },
+    {
+      path: "/g/:id",
+      name: "group",
+      component: () => import("./views/chat/Group.vue")
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting
