@@ -22,14 +22,14 @@ jobs:
       # Download and cache
       - run: yarn install
 
+      # run tests!
+      - run: yarn lint
+      - run: yarn build
+
       - save_cache:
           paths:
             - dist
           key: chat-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: yarn lint
-      - run: yarn build
 
   deploy:
     docker:
