@@ -19,18 +19,12 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - chat-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - chat-
-
+      # Download and cache
       - run: yarn install
 
       - save_cache:
           paths:
-            - node_modules
+            - dist
           key: chat-{{ checksum "package.json" }}
 
       # run tests!
