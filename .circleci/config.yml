@@ -1,0 +1,67 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:lts
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - chat-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - chat-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: chat-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: yarn lint
+
+  deploy:
+    steps:
+      - run:
+        name: Update System
+        command: |
+          sudo apt-get update && sudo apt-get install rsync
+      - restore_cache:
+          keys:
+            - chat-v1-{{ checksum "package.json" }}
+      - deploy:
+          name: Deploy via ssh
+          command: |
+            mkdir -p ~/.ssh
+            touch ~/.ssh/known_hosts
+            { ssh-keyscan $SSH_HOST 2> /dev/null; } >> ~/.ssh/known_hosts
+            if [ ${CIRCLE_BRANCH} = "master" ];then
+                rsync -az -v --delete -e ssh dist/* $SSH_USER@$SSH_HOST:/var/www/chat/
+            else
+                echo "Not master branch"
+            fi
+workflows:
+  version: 2
+
+  Chat-CI:
+    jobs:
+      - build
+      - deploy:
+        requires:
+          - build
