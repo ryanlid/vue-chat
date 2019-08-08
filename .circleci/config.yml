@@ -39,9 +39,9 @@ jobs:
   deploy:
     steps:
       - run:
-        name: Update System
-        command: |
-          sudo apt-get update && sudo apt-get install rsync
+          name: Update System
+          command: |
+            sudo apt-get update && sudo apt-get install rsync
       - restore_cache:
           keys:
             - chat-v1-{{ checksum "package.json" }}
@@ -63,5 +63,5 @@ workflows:
     jobs:
       - build
       - deploy:
-        requires:
-          - build
+          requires:
+            - build
