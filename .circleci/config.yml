@@ -35,12 +35,14 @@ jobs:
 
       # run tests!
       - run: yarn lint
+      - run: yarn build
 
   deploy:
     docker:
       # specify the version you desire here
       - image: circleci/node:lts
     steps:
+      - checkout
       - run:
           name: Update System
           command: |
@@ -63,7 +65,7 @@ jobs:
 workflows:
   version: 2
 
-  Chat-CI:
+  build-and-deploy:
     jobs:
       - build
       - deploy:
