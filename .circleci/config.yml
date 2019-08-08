@@ -23,8 +23,7 @@ jobs:
       - run: yarn install
 
       # run tests!
-      - run: yarn lint
-      - run: yarn build
+      - run: yarn build && pwd && ls
 
       - save_cache:
           paths:
