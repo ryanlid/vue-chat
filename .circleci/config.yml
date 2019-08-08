@@ -47,7 +47,8 @@ jobs:
             sudo apt-get update && sudo apt-get install rsync
       - restore_cache:
           keys:
-            - chat-v1-{{ checksum "package.json" }}
+            - chat-{{ checksum "package.json" }}
+            - chat-
       - deploy:
           name: Deploy via ssh
           command: |
