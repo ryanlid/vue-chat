@@ -37,6 +37,9 @@ jobs:
       - run: yarn lint
 
   deploy:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:lts
     steps:
       - run:
           name: Update System
