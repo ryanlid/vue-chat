@@ -1,5 +1,7 @@
 # vue-chat
 
+[![CircleCI](https://circleci.com/gh/ryanlid/vue-chat.svg?style=svg)](https://circleci.com/gh/ryanlid/vue-chat)
+
 ## Project setup
 ```
 yarn install

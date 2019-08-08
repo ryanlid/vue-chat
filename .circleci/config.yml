@@ -6,45 +6,33 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:lts
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
     working_directory: ~/project
 
     steps:
       - checkout
-
-      # Download and cache
-      - run: yarn install
-
-      # run tests!
-      - run: yarn build && pwd && ls
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - chat-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - chat-
+      - run:
+        name: Install && Build
+        command: |
+          yarn install && yarn build && pwd && ls
+      - run:
 
       - save_cache:
           paths:
-            - dist
+            - node_modules
           key: chat-{{ checksum "package.json" }}
 
-  deploy:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:lts
-    working_directory: ~/project
-    steps:
-      - checkout
       - run:
           name: Update System
           command: |
             sudo apt-get update && sudo apt-get install rsync
-      - restore_cache:
-          keys:
-            - chat-{{ checksum "package.json" }}
-            - chat-
+
       - deploy:
           name: Deploy via ssh
           command: |
@@ -58,12 +46,3 @@ jobs:
             else
                 echo "Not master branch"
             fi
-workflows:
-  version: 2
-
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
