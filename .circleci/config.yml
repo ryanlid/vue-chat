@@ -58,6 +58,7 @@ jobs:
             touch ~/.ssh/known_hosts
             { ssh-keyscan $SSH_HOST 2> /dev/null; } >> ~/.ssh/known_hosts
             pwd
+            ls
             if [ ${CIRCLE_BRANCH} = "master" ];then
                 rsync -az -v --delete -e ssh /home/circleci/project/dist/* $SSH_USER@$SSH_HOST:/var/www/chat/
             else
