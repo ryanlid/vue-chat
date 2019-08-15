@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <ChatContent />
+    <ChatContent :data="recordList" />
     <ChatAction />
   </div>
 </template>
@@ -8,16 +8,33 @@
 <script>
 import ChatContent from "../../components/ChatContent";
 import ChatAction from "../../components/ChatAction";
+import { getChatInfo } from "../../api/chat/chat";
 
 export default {
   data() {
-    return {};
+    return {
+      recordList: []
+    };
   },
   components: {
     ChatContent,
     ChatAction
   },
-  methods: {}
+  methods: {
+    init() {
+      getChatInfo({})
+        .then(result => {
+          this.recordList = result.recordList;
+          console.log(this.recordList);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
+  created: function() {
+    this.init();
+  }
 };
 </script>
 

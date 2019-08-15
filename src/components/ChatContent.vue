@@ -1,100 +1,46 @@
 <template>
   <div class="scroll-page">
-    <div class="wrapper" ref="wrapper">
+    <scroll
+      :pullup="true"
+      :pulldown="true"
+      @pulldown="pulldown"
+      @scrollToEnd="scrollToEnd"
+    >
       <ul class="content">
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>.2.</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>1</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>.3.</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>.3.</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
+        <li v-for="item in data" :key="item.data.id">
+          {{ item.data.content }}
+        </li>
       </ul>
-    </div>
+    </scroll>
   </div>
 </template>
 <script>
-import BScroll from "better-scroll";
+import scroll from "./Scroll";
 
 export default {
-  data() {
-    return {};
-  },
-  mounted() {
-    let wrapper = this.$refs.wrapper;
-    new BScroll(wrapper, {
-      pullDownRefresh: {
-        threshold: 50,
-        stop: 20
+  props: {
+    data: {
+      type: Array,
+      default() {
+        return [];
       }
-    });
+    }
+  },
+  data() {
+    return {
+      scroll: {}
+    };
+  },
+  methods: {
+    pulldown() {
+      console.log("pulldown");
+    },
+    scrollToEnd() {
+      console.log("scrollEnd");
+    }
+  },
+  components: {
+    scroll
   }
 };
 </script>
@@ -106,9 +52,6 @@ export default {
   width: 100%;
   height: calc(100% - 50px);
   background: #efeff4;
-}
-.wrapper {
-  height: 100%;
 }
 ul {
   list-style: none;

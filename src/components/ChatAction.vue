@@ -20,7 +20,7 @@
       <button type="button" class="btn" v-show="!isVoice">发送</button>
       <div class="icon iconfont icon-biaoqing"></div>
       <label class="icon iconfont icon-jiahao" for="file-select"></label>
-      <input type="file" id="file-select" hidden />
+      <input type="file" id="file-select" hidden @change="uploadFile" />
     </form>
   </div>
 </template>
@@ -37,7 +37,9 @@ export default {
     };
   },
   methods: {
-    uploadFile() {}
+    uploadFile(e) {
+      console.log(e);
+    }
   },
   components: {
     Recorder
