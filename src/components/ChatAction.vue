@@ -1,23 +1,47 @@
 <template>
   <div class="bottom">
     <form>
-      <div class="icon iconfont icon-yuyin"></div>
-
-      <input class="input" type="text" placeholder="请输入" />
-
-      <!-- <button class="btn">发送</button> -->
+      <div
+        class="icon iconfont icon-yuyin"
+        v-show="!isVoice"
+        @click="isVoice = true"
+      ></div>
+      <div
+        class="icon iconfont icon-keyboard"
+        v-show="isVoice"
+        @click="isVoice = false"
+      ></div>
+      <div class="input-wrap">
+        <template v-if="!isVoice">
+          <input class="input" type="text" placeholder="请输入" />
+        </template>
+        <Recorder v-show="isVoice" />
+      </div>
+      <button type="button" class="btn" v-show="!isVoice">发送</button>
       <div class="icon iconfont icon-biaoqing"></div>
-      <div class="icon iconfont icon-jiahao"></div>
+      <label class="icon iconfont icon-jiahao" for="file-select"></label>
+      <input type="file" id="file-select" hidden />
     </form>
   </div>
 </template>
 
 <script>
+import Recorder from "./Recorder";
 export default {
   data() {
-    return {};
+    return {
+      isVoice: true,
+      constraints: {
+        audio: true
+      }
+    };
   },
-  methods: {}
+  methods: {
+    uploadFile() {}
+  },
+  components: {
+    Recorder
+  }
 };
 </script>
 
@@ -47,22 +71,31 @@ export default {
     padding: 0 6px;
   }
 }
-.input {
+.input-wrap {
   flex: auto;
+  height: 100%;
+  padding: 0 4px;
+}
+.input {
+  width: 100%;
   height: 100%;
   border: 1px solid #ddd;
   outline: none;
   padding: 0 6px;
-  margin: 0 4px;
   font-size: 16px;
   border-radius: 6px;
+  user-select: none;
+  box-sizing: border-box;
 }
+
 .btn {
-  background: #5898fc;
+  background: #317cf4;
   font-size: 16px;
   height: 100%;
   border: 1px solid rgb(12, 89, 213);
+  color: #fff;
   border-radius: 6px;
   outline: none;
+  user-select: none;
 }
 </style>
