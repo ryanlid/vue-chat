@@ -50,7 +50,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.$refs.scroll1.scrollTo(0, this.$refs.scroll1.scroll.maxScrollY);
-    }, 100);
+    }, 500);
   }
 };
 </script>

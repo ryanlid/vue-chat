@@ -1,6 +1,6 @@
 <template>
   <div class="bottom">
-    <form>
+    <form @submit="submit">
       <div
         class="icon iconfont icon-yuyin"
         v-show="!isVoice"
@@ -13,11 +13,16 @@
       ></div>
       <div class="input-wrap">
         <template v-if="!isVoice">
-          <input class="input" type="text" placeholder="请输入" />
+          <input
+            class="input"
+            type="text"
+            placeholder="请输入"
+            v-model="text"
+          />
         </template>
         <Recorder v-show="isVoice" />
       </div>
-      <button type="button" class="btn" v-show="!isVoice">发送</button>
+      <button type="submit" class="btn" v-show="!isVoice">发送</button>
       <div class="icon iconfont icon-biaoqing"></div>
       <label class="icon iconfont icon-jiahao" for="file-select"></label>
       <input type="file" id="file-select" hidden @change="uploadFile" />
@@ -30,15 +35,21 @@ import Recorder from "./Recorder";
 export default {
   data() {
     return {
-      isVoice: true,
+      isVoice: false,
       constraints: {
         audio: true
-      }
+      },
+      text: ""
     };
   },
   methods: {
     uploadFile(e) {
       console.log(e);
+    },
+    submit(e) {
+      e.preventDefault();
+      this.$emit("submit", this.text);
+      this.text = "";
     }
   },
   components: {
@@ -73,6 +84,7 @@ export default {
     padding: 0 6px;
   }
 }
+
 .input-wrap {
   flex: auto;
   height: 100%;
