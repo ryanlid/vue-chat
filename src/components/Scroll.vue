@@ -75,6 +75,14 @@ export default {
     refresh() {
       // 代理better-scroll的refresh方法
       this.scroll && this.scroll.refresh();
+    },
+    scrollTo() {
+      // 代理better-scroll的scrollTo方法
+      this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments);
+    },
+    scrollToElement() {
+      // 代理better-scroll的scrollToElement方法
+      this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments);
     }
   },
   watch: {
