@@ -48,24 +48,31 @@ export default {
     },
     websocketonmessage(e) {
       console.log("message", e);
+      console.log(JSON.parse(e.data));
+
+      this.recordList.push({
+        data: JSON.parse(e.data).data
+      });
+      console.log(this.recordList);
     },
     websocketclose(e) {
       console.log("close", e);
     },
     submitText(val) {
+      let data = {
+        avatar: "https://via.placeholder.com/150/FFFF00/",
+        content: val,
+        contentType: "txt",
+        duration: 0,
+        id: Math.random().toFixed(5) * 10000,
+        senderId: 1,
+        username: "user"
+      };
       this.recordList.push({
-        data: {
-          avatar: "https://via.placeholder.com/150/FFFF00/",
-          content: val,
-          contentType: "txt",
-          duration: 0,
-          id: Math.random().toFixed(2) * 100,
-          senderId: 1,
-          username: "user"
-        }
+        data
       });
 
-      this.socket.send(JSON.stringify(val));
+      this.socket.send(JSON.stringify({ data }));
     }
   },
   created: function() {
