@@ -30,7 +30,9 @@ export default {
       this.$router.go(-1);
     },
     more() {
-      console.log("more");
+      this.$router.push({
+        name: "chatInfo"
+      });
     },
     init() {
       getChatInfo({})

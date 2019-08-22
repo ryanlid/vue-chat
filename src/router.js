@@ -24,6 +24,11 @@ export default new Router({
       component: () => import("./views/chat/Single.vue")
     },
     {
+      path: "/s/:id/info",
+      name: "chatInfo",
+      component: () => import("./views/chat/Info.vue")
+    },
+    {
       path: "/g/:id",
       name: "group",
       component: () => import("./views/chat/Group.vue")
