@@ -6,7 +6,7 @@
         <div>
           <img class="avatar" :src="item.avatar" />
         </div>
-        <div>
+        <div class="text-center">
           <span>{{ item.name }}</span>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default {
         {
           id: 4,
           avatar: "https://static.oonnnoo.com/upload/dlVXh_rgA.png",
-          name: ""
+          name: "王小二"
         },
         {
           id: 5,
