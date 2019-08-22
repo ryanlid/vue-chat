@@ -73,7 +73,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "../../fonts/iconfont.css";
 .info {
   position: absolute;
   top: 0;
@@ -89,9 +88,6 @@ export default {
     width: 25%;
     padding: 20px 20px 0;
     box-sizing: border-box;
-    &.add .icon {
-      font-size: 20px;
-    }
   }
 }
 .avatar {

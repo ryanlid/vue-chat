@@ -34,6 +34,16 @@ export default new Router({
       component: () => import("./views/chat/Group.vue")
     },
     {
+      path: "/contacts",
+      name: "contactsList",
+      component: () => import("./views/contacts/List.vue")
+    },
+    {
+      path: "/my",
+      name: "my",
+      component: () => import("./views/my/Index.vue")
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting

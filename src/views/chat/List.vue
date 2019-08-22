@@ -1,15 +1,17 @@
 <template>
   <div class="list">
-    <Header>Chat</Header>
+    <Header :left="false">消息</Header>
     <template v-for="item in messages">
       <router-link :to="link(item.type, item.id)" :key="item.id">
         <ListItem :messages="item" />
       </router-link>
     </template>
+    <bottom-tab class="bottom"></bottom-tab>
   </div>
 </template>
 
 <script>
+import BottomTab from "../../components/BottomTab";
 import Header from "../../components/Header";
 import ListItem from "../../components/ListItem";
 
@@ -49,7 +51,8 @@ export default {
   },
   components: {
     Header,
-    ListItem
+    ListItem,
+    BottomTab
   },
   methods: {
     link(type, id) {
