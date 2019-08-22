@@ -1,11 +1,13 @@
 <template>
   <div class="page">
+    <Header :right="true" :rightEvent="true" @rightEvent="more">Dong</Header>
     <ChatContent :data="recordList" />
     <ChatAction @submit="submitText" />
   </div>
 </template>
 
 <script>
+import Header from "../../components/Header";
 import ChatContent from "../../components/ChatContent";
 import ChatAction from "../../components/ChatAction";
 import { getChatInfo } from "../../api/chat/chat";
@@ -19,10 +21,17 @@ export default {
     };
   },
   components: {
+    Header,
     ChatContent,
     ChatAction
   },
   methods: {
+    back() {
+      this.$router.go(-1);
+    },
+    more() {
+      console.log("more");
+    },
     init() {
       getChatInfo({})
         .then(result => {

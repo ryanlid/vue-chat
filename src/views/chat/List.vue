@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="list">
+    <Header>Chat</Header>
     <template v-for="item in messages">
       <router-link :to="link(item.type, item.id)" :key="item.id">
         <ListItem :messages="item" />
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+import Header from "../../components/Header";
 import ListItem from "../../components/ListItem";
 
 export default {
@@ -46,6 +48,7 @@ export default {
     };
   },
   components: {
+    Header,
     ListItem
   },
   methods: {
@@ -57,6 +60,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.list {
+  position: relative;
+}
 a {
   list-style: none;
   text-decoration: none;

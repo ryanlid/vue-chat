@@ -57,10 +57,10 @@ export default {
 <style lang="less" scoped>
 .scroll-page {
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 100px);
   background: #efeff4;
 }
 ul {
