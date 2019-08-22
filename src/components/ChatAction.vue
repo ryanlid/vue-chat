@@ -98,7 +98,6 @@ export default {
   padding: 0 6px;
   font-size: 16px;
   border-radius: 6px;
-  user-select: none;
   box-sizing: border-box;
 }
 
