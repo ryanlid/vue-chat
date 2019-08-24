@@ -20,9 +20,9 @@
       </div>
     </div>
     <cell-group>
-      <cell>查找聊天记录</cell>
-      <cell>置顶聊天</cell>
-      <cell>清空聊天记录</cell>
+      <cell title="查找聊天记录"></cell>
+      <cell title="置顶聊天"></cell>
+      <cell title="清空聊天记录"></cell>
     </cell-group>
   </div>
 </template>

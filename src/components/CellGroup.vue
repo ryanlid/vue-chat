@@ -11,5 +11,6 @@ export default {};
 <style>
 .cell-group {
   margin-bottom: 10px;
+  background-color: #fff;
 }
 </style>
