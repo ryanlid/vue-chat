@@ -19,19 +19,18 @@
         </div>
       </div>
     </div>
-    <div class="list-group">
-      <div class="list-item">查找聊天记录</div>
-      <div class="list-item">置顶聊天</div>
-      <div class="list-item">清空聊天记录</div>
-    </div>
-    <div class="list-group">
-      <div class="list-item">投诉</div>
-    </div>
+    <cell-group>
+      <cell>查找聊天记录</cell>
+      <cell>置顶聊天</cell>
+      <cell>清空聊天记录</cell>
+    </cell-group>
   </div>
 </template>
 
 <script>
 import Header from "../../components/Header";
+import CellGroup from "../../components/CellGroup";
+import Cell from "../../components/Cell";
 
 export default {
   data() {
@@ -66,7 +65,9 @@ export default {
     };
   },
   components: {
-    Header
+    Header,
+    CellGroup,
+    Cell
   },
   methods: {}
 };
@@ -92,13 +93,5 @@ export default {
 }
 .avatar {
   width: 100%;
-}
-.list-group {
-  margin-bottom: 10px;
-}
-.list-item {
-  background: #fff;
-  padding: 10px;
-  border-bottom: 1px solid #efeff4;
 }
 </style>
