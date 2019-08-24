@@ -40,9 +40,7 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.title {
-  font-weight: bold;
-}
+
 .value-wrap {
   display: flex;
   align-items: center;
