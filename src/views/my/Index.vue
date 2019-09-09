@@ -13,7 +13,9 @@
       <a target="_blank" href="/about">
         <cell title="关于" is-link></cell>
       </a>
-      <cell title="退出"></cell>
+      <router-link to="/logout">
+        <cell title="退出"></cell>
+      </router-link>
     </cell-group>
     <bottom-tab class="bottom"></bottom-tab>
   </div>
