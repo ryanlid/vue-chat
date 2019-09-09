@@ -5,7 +5,10 @@
       <div v-if="label">{{ label }}</div>
     </div>
     <div class="value-wrap">
-      <div>{{ value }}</div>
+      <div>
+        {{ value }}
+        <slot></slot>
+      </div>
       <div class="icon iconfont icon-right" v-if="isLink"></div>
     </div>
   </div>

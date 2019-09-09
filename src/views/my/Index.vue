@@ -4,8 +4,15 @@
     <cell-group>
       <cell title="姓名" value="Dong" is-link></cell>
       <cell title="性别" value="男" is-link></cell>
-      <cell title="手机" value="13023456789" is-link></cell>
-      <cell title="关于" is-link></cell>
+      <a href="tel:13012341234">
+        <cell title="手机" is-link>13012341234</cell>
+      </a>
+      <a href="mailto:hello@qq.com">
+        <cell title="邮箱" is-link>hello@qq.com</cell>
+      </a>
+      <a target="_blank" href="/about">
+        <cell title="关于" is-link></cell>
+      </a>
       <cell title="退出"></cell>
     </cell-group>
     <bottom-tab class="bottom"></bottom-tab>
@@ -32,4 +39,9 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+a {
+  text-decoration: none;
+  color: #2c3e50;
+}
+</style>
