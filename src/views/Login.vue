@@ -4,11 +4,19 @@
       <h1>Chat</h1>
       <div class="md-field">
         <label for="username">用户名</label>
-        <input type="text" class="md-input input" />
+        <input
+          type="text"
+          class="md-input input"
+          v-model="loginData.username"
+        />
       </div>
       <div class="md-field">
         <label for="username">密码</label>
-        <input type="text" class="md-input input" />
+        <input
+          type="password"
+          class="md-input input"
+          v-model="loginData.passwd"
+        />
       </div>
       <button @click="login" class="btn">登录</button>
     </div>
@@ -17,6 +25,14 @@
 
 <script>
 export default {
+  data() {
+    return {
+      loginData: {
+        username: "hello",
+        passwd: "123456"
+      }
+    };
+  },
   methods: {
     login() {
       this.$router.replace("/list");
